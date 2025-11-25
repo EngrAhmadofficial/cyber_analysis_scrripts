@@ -54,14 +54,14 @@ def analyze_website(url):
             'Upgrade-Insecure-Requests': '1',
         }
 
-        print(f"🔍 Connecting to: {url}")
-        print(f"🌐 Using Tor proxy: socks5h://127.0.0.1:9050")
+        print(f"Connecting to: {url}")
+        print(f"Using Tor proxy: socks5h://127.0.0.1:9050")
 
         # Fetch the webpage
         response = requests.get(url, proxies=proxies, headers=headers, timeout=60)
         response.raise_for_status()
 
-        print("✅ Successfully fetched webpage")
+        print(" Successfully fetched webpage")
 
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -139,40 +139,40 @@ def analyze_website(url):
             f.write(all_text)
 
         # Print summary
-        print(f"\n✅ ANALYSIS COMPLETE!")
-        print(f"📁 Report saved to: {filename}")
-        print(f"🎯 Risk Score: {risk_score}/100")
-        print(f"🔍 Findings: {len(findings)} categories")
-        print(f"📝 Text length: {len(all_text)} characters")
+        print(f"\n ANALYSIS COMPLETE!")
+        print(f" Report saved to: {filename}")
+        print(f" Risk Score: {risk_score}/100")
+        print(f" Findings: {len(findings)} categories")
+        print(f" Text length: {len(all_text)} characters")
 
         if findings:
-            print(f"🚨 Security issues detected:")
+            print(f" Security issues detected:")
             for category, items in findings.items():
                 print(f"   • {category}: {len(items)} instances")
         else:
-            print("✅ No security issues detected")
+            print(" No security issues detected")
 
-        print(f"💡 Hypotheses: {hypotheses[0] if hypotheses else 'None'}")
+        print(f" Hypotheses: {hypotheses[0] if hypotheses else 'None'}")
 
         return filename
 
     except requests.exceptions.RequestException as e:
-        print(f"❌ Network error: {e}")
+        print(f" Network error: {e}")
         return None
     except Exception as e:
-        print(f"❌ Analysis error: {e}")
+        print(f" Analysis error: {e}")
         return None
 
 def main():
-    print("🌐 DARK WEB ANALYSIS TOOL")
+    print(" DARK WEB ANALYSIS TOOL")
     print("=" * 50)
 
     # Check Tor connection
-    print("🔍 Checking Tor connection...")
+    print(" Checking Tor connection...")
     if check_tor_connection():
-        print("✅ Tor is working correctly!")
+        print(" Tor is working correctly!")
     else:
-        print("❌ Tor connection failed. Please ensure Tor is running:")
+        print(" Tor connection failed. Please ensure Tor is running:")
         print("   tor &")
         return
 
@@ -184,18 +184,18 @@ def main():
     url = input("\nEnter website URL: ").strip()
 
     if not url:
-        print("❌ Please enter a valid URL")
+        print(" Please enter a valid URL")
         return
 
     # Analyze the website
-    print(f"\n🚀 Starting analysis of: {url}")
+    print(f"\n Starting analysis of: {url}")
     result = analyze_website(url)
 
     if result:
-        print(f"\n🎉 Analysis completed successfully!")
-        print(f"📊 Check the detailed report in: {result}")
+        print(f"\n Analysis completed successfully!")
+        print(f" Check the detailed report in: {result}")
     else:
-        print("\n💥 Analysis failed. The site may be offline or inaccessible.")
+        print("\n Analysis failed. The site may be offline or inaccessible.")
 
 if __name__ == "__main__":
     main()
