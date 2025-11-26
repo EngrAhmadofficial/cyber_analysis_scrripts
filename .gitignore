@@ -131,3 +131,6 @@ dmypy.json
 # Project specific
 analysis_*.txt
 example_*_text.txt
+.idea
+.venv
+misc.xml
